@@ -2,26 +2,26 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { Heading } from "@/src/shared/components/typography/Heading";
 import { generatePageTitle } from "@/src/shared/utils/metadata";
-import { RegisterForm } from "@/src/features/auth/components/RegisterForm";
+import { ForgotPasswordForm } from "@/src/features/auth/components/ForgotPasswordForm";
 
 export const metadata: Metadata = {
-  title: generatePageTitle("Crear cuenta"),
+  title: generatePageTitle("Restablecer contraseña"),
 };
 
-export default function RegisterPage() {
+export default function ForgotPasswordPage() {
   return (
     <>
-      <Heading>Crear cuenta</Heading>
+      <Heading>Recupera tu acceso a meeti</Heading>
 
-      <RegisterForm />
+      <ForgotPasswordForm />
 
       <nav className="mt-20 flex justify-between">
         <Link href={"/auth/login"} className="font-bold">
           Iniciar sesión
         </Link>
 
-        <Link href={"/auth/forgot-password"} className="font-bold">
-          Olvide mi contraseña
+        <Link href={"/auth/register"} className="font-bold">
+          Crear cuenta
         </Link>
       </nav>
     </>
