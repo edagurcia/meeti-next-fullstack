@@ -30,3 +30,28 @@ Se utiliza zod para crear las validaciones, schemas y types para los formularios
 con el tamaño requerido.
 
 [x] @/features/auth/schemas
+
+## Instalaciones de librerías necesarias para ORM y base de datos NEON
+
+npm i drizzle-orm pg dotenv
+npm i -D drizzle-kit @types/pg tsx
+
+### drizzle commands
+
+npx drizzle-kit generate
+(crea los archivos SQL para luego ejecutarlos)
+
+npx drizzle-kit migrate
+(ejecuta migraciones generadas en la base de datos)
+(Mantiene un historial de que migraciones ya se aplicaron)
+
+npx drizzle-kit push
+(Sin pasar por archivos de migraciones sincroniza directamente el esquema de TypeScript con la base de datos, es util para desarrollo rápido pero no es recomendable en producción porque no guarda historial de cambios)
+
+npx drizzle-kit studio
+(Abre una interfaz visual en el navegador para inspeccionar y gestionar la base de datos)
+
+## Better Auth
+
+npx @better-auth/cli@latest generate
+(genera los schemas de better auth, los crea en el raíz, debemos moverlo a nuestro folder de schemas)

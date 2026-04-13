@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 
 import {
   RegisterSchema,
@@ -16,18 +17,30 @@ import {
   FormSubmit,
 } from "@/src/shared/components/forms";
 
+import { signUp } from "@/src/features/auth/actions/auth";
+
 export const RegisterForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: zodResolver(RegisterSchema),
     mode: "all",
   });
 
-  const onSubmit = (data: RegisterType) => {
-    console.log(data);
+  const onSubmit = async (data: RegisterType) => {
+    const { error, success } = await signUp(data);
+
+    if (error) {
+      toast.error(error);
+    }
+
+    if (success) {
+      toast.success(success);
+      reset();
+    }
   };
 
   return (
