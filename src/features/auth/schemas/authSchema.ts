@@ -25,7 +25,8 @@ export const RegisterSchema = BaseAuthSchema.pick({
 
 export const LoginSchema = BaseAuthSchema.pick({
   email: true,
-  password: true,
+}).extend({
+  password: z.string().trim().min(1, { error: "Contraseña es obligatoria" }),
 });
 
 export const ForgotPasswordSchema = BaseAuthSchema.pick({
@@ -35,3 +36,4 @@ export const ForgotPasswordSchema = BaseAuthSchema.pick({
 // Types basados en los schemas
 
 export type RegisterType = z.infer<typeof RegisterSchema>;
+export type LoginType = z.infer<typeof LoginSchema>;
